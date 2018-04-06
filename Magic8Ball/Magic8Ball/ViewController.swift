@@ -30,7 +30,11 @@ class ViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    }
+    
+    // shake gesture
+    override func motionEnded(_ motion: UIEventSubtype, with event: UIEvent?) {
+        updateBallImage()
     }
 
 
