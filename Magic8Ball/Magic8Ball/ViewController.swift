@@ -24,7 +24,7 @@ class ViewController: UIViewController {
     }
     
     func updateBallImage(){
-        var randomBallNumber = Int(arc4random_uniform(5))
+        let randomBallNumber = Int(arc4random_uniform(5))
         imageView.image = UIImage(named: ballArray[randomBallNumber])
     }
 
