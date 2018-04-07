@@ -9,8 +9,9 @@
 import UIKit
 import AVFoundation
 
-class ViewController: UIViewController{
-    var player: AVAudioPlayer?
+class ViewController: UIViewController, AVAudioPlayerDelegate {
+    
+    var player: AVAudioPlayer!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,22 +43,17 @@ class ViewController: UIViewController{
         }
         
         // create a resource url
-        let url = Bundle.main.url(forResource: resourceName, withExtension: "wav")!
+        let url = Bundle.main.url(forResource: resourceName, withExtension: "wav")
         
-        // play the note
+        // create player
         do {
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
-            try AVAudioSession.sharedInstance().setActive(true)
-            
-            
-            player = try AVAudioPlayer(contentsOf: url)
-            guard let player = player else { return }
-            
-            player.play()
-            
+            player = try AVAudioPlayer(contentsOf: url!)
         } catch let error {
             print(error.localizedDescription)
         }
+        
+        // play note
+        player.play()
     }
 }
 
