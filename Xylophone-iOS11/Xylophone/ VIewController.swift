@@ -19,8 +19,32 @@ class ViewController: UIViewController{
 
 
     @IBAction func notePressed(_ sender: UIButton) {
-        let url = Bundle.main.url(forResource: "note1", withExtension: "wav")!
-      
+        playNote(tag: sender.tag)
+    }
+    
+    func playNote(tag : Int) {
+        var resourceName : String
+
+        if tag == 1 {
+            resourceName = "note1"
+        } else if tag == 2 {
+            resourceName = "note2";
+        } else if tag == 3 {
+            resourceName = "note3";
+        } else if tag == 4 {
+            resourceName = "note4";
+        } else if tag == 5 {
+            resourceName = "note5";
+        }else if tag == 6 {
+            resourceName = "note6";
+        } else {
+            resourceName = "note7";
+        }
+        
+        // create a resource url
+        let url = Bundle.main.url(forResource: resourceName, withExtension: "wav")!
+        
+        // play the note
         do {
             try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
             try AVAudioSession.sharedInstance().setActive(true)
@@ -35,8 +59,5 @@ class ViewController: UIViewController{
             print(error.localizedDescription)
         }
     }
-    
-  
-
 }
 
