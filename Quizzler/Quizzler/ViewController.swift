@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     let allQuestions = QuestionBank()
     var pickedAnswer : Bool = false
     var questionNumber : Int = 0
+    var gameScore : Int = 0
     
     @IBOutlet weak var questionLabel: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
@@ -22,8 +23,8 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let firstQuestion = allQuestions.list[0]
-        questionLabel.text = firstQuestion.questionText
+        updateUI()
+//        nextQuestion()
     }
 
 
@@ -34,13 +35,16 @@ class ViewController: UIViewController {
             pickedAnswer = false
         }
 
-        checkAnswer()
+        checkAnswer() 
         questionNumber += 1
-        nextQuestion()
+        updateUI()
     }
     
     
     func updateUI() {
+        scoreLabel.text = "Score : \(gameScore)"
+        progressLabel.text = "\(questionNumber) / 13"
+        progressBar.frame.size.width = (view.frame.size.width / 13) * CGFloat(questionNumber)
         nextQuestion()
     }
     
@@ -51,15 +55,13 @@ class ViewController: UIViewController {
             questionLabel.text = question.questionText
         } else {
             print("GAME OVER !!!")
-            
             let alert = UIAlertController(title: "Awsome", message: "You've finished all the question, do you want to start over?", preferredStyle: .alert)
             
             // add the actions (buttons)
             alert.addAction(UIAlertAction(title: "Restart", style: .default, handler: {
-                (UIAlertAction) in
+                UIAlertAction in
                 self.startOver()
             }))
-//            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
             
             // show the alert
             self.present(alert, animated: true, completion: nil)
@@ -70,17 +72,18 @@ class ViewController: UIViewController {
     func checkAnswer() {
         let correctAnswer = allQuestions.list[questionNumber].answer
         if correctAnswer == pickedAnswer {
-           print("Correct Answer")
+            ProgressHUD.showSuccess("Correct")
+            gameScore += 10
         } else {
-            print("Wrong Answer")
+            ProgressHUD.showError("Wrong")
         }
-       
     }
     
     
     func startOver() {
-       questionNumber = 0
-        nextQuestion()
+        questionNumber = 0
+        gameScore = 0
+        updateUI()
     }
     
 
