@@ -33,6 +33,7 @@ class ViewController: UIViewController {
         } else if sender.tag == 2 {
             pickedAnswer = false
         }
+
         checkAnswer()
         questionNumber += 1
         nextQuestion()
@@ -40,7 +41,7 @@ class ViewController: UIViewController {
     
     
     func updateUI() {
-      
+        nextQuestion()
     }
     
 
@@ -50,8 +51,18 @@ class ViewController: UIViewController {
             questionLabel.text = question.questionText
         } else {
             print("GAME OVER !!!")
-            questionNumber = 0
-            nextQuestion()
+            
+            let alert = UIAlertController(title: "Awsome", message: "You've finished all the question, do you want to start over?", preferredStyle: .alert)
+            
+            // add the actions (buttons)
+            alert.addAction(UIAlertAction(title: "Restart", style: .default, handler: {
+                (UIAlertAction) in
+                self.startOver()
+            }))
+//            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
+            
+            // show the alert
+            self.present(alert, animated: true, completion: nil)
         }
     }
     
@@ -68,7 +79,8 @@ class ViewController: UIViewController {
     
     
     func startOver() {
-       
+       questionNumber = 0
+        nextQuestion()
     }
     
 
