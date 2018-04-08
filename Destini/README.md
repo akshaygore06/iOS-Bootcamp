@@ -1,14 +1,10 @@
 # Destini
-Learn to make iOS Apps with [The App Brewery](https://www.appbrewery.co) 📱 | Project Stub | (Swift 4.0/Xcode 9) - Destini App
-
-Beginner: Download the starter project files as .zip and extract the files to your desktop.
-
-Pro: Git clone to your Xcode projects folder.
+This is the Destini app which is story based game. Please enjoy
 
 ## Finished App
-![Finished App](https://github.com/londonappbrewery/Images/blob/master/Destini.gif)
+![Finished App](https://github.com/akshaygore06/iOS-Bootcamp/blob/master/Destini/Destini.gif)
 
 
 
-Copyright © The App Brewery
+Copyright © Akshay Gore
 
